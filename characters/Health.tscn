@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+signal health_changed(health, source_body)
+export var max_health = 3
+
+var health = 0
+var status = null
+
+enum STATUSES {NONE, INVICIBLE}
+
+func _ready() -> void:
+	status = STATUSES.NONE
+	health = max_health
+	
+func take_damage(amount, source):
+	if status == STATUSES.INVICIBLE:
+		return
+		
+	health -= amount	
+	if health < 0:
+		health = 0
+	
+	get_parent().knock_back(source.position)
+	
+	print(health)
+	status = STATUSES.INVICIBLE	
+	$InvicibilityTimer.start(-1)
+	get_parent().get_node(\"AnimationPlayer\").play(\"damaged\")
+	emit_signal(\"health_changed\", health)
+
+func heal(amount):
+	health += amount
+	if health > max_health:
+		health = max_health	
+	emit_signal(\"health_changed\", health)
+
+
+func _on_InvicibilityTimer_timeout() -> void:
+	status = STATUSES.NONE
+"
+
+[node name="Health" type="Node"]
+script = SubResource( 1 )
+
+[node name="InvicibilityTimer" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="InvicibilityTimer" to="." method="_on_InvicibilityTimer_timeout"]

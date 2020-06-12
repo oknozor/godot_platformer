@@ -1,11 +1,10 @@
 extends Character
 
-export var GRAVITY = 500
 export var DASH_SPEED = 300
 export var WALK_SPEED = 150
 export var JUMP_FORCE = 350
 export var KNOCK_BACK = 40
-export var POGO = 100
+export var POGO = 150
 export var STOMP_FORCE = 100
 export (float, 0, 1.0) var FRICTION = 0.25
 export (float, 0, 1.0) var AIR_FRICTION = 0.6
@@ -42,8 +41,6 @@ func update_and_move(direction: Vector2, delta: float) -> void:
 	else: 
 		_velocity.x = lerp(_velocity.x, 0, FRICTION)
 		
-	_velocity.y += GRAVITY * delta
-	
 	var can_jump = (is_on_floor() or JUMP_COUNT > 1) and _jump_counter > 0
 	
 	if can_jump and Input.is_action_just_pressed("jump"):
@@ -64,7 +61,6 @@ func update_and_move(direction: Vector2, delta: float) -> void:
 	elif is_on_ceiling():
 		_velocity.y = lerp(_velocity.y, 0, FRICTION)
 		
-	_velocity = move_and_slide(_velocity, Vector2.UP)
 	
 	
 func get_input_direction() -> Vector2: 

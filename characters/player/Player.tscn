@@ -31,7 +31,7 @@ func _ready() -> void:
 
 [sub_resource type="Animation" id=3]
 resource_name = "attack"
-length = 0.5
+length = 0.35
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -39,7 +39,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( -0.00161163, 0.0576346, 0.106062, 0.152879, 0.199695, 0.248123, 0.297356, 0.363512, 0.428862 ),
+"times": PoolRealArray( -0.00161163, 0.0339538, 0.0658765, 0.0983415, 0.130806, 0.179234, 0.228467, 0.271659, 0.316917 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
@@ -51,7 +51,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( -0.000805817, 0.0596303, 0.106368, 0.153105, 0.199842, 0.250609, 0.297346, 0.36584, 0.427082 ),
+"times": PoolRealArray( -0.000805817, 0.0359495, 0.0661825, 0.0985675, 0.130953, 0.18172, 0.228457, 0.273987, 0.315854 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, 44.0737, 93.1003, 116.969, 139.378, 157.462, 172.961, 250.405, 271.804 ]
@@ -63,7 +63,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( -1.33878e-09, 0.0596303, 0.107173, 0.152299, 0.200648, 0.250609, 0.297346, 0.366646, 0.427082 ),
+"times": PoolRealArray( -1.33878e-09, 0.0359495, 0.0669875, 0.0977615, 0.131759, 0.18172, 0.228457, 0.274793, 0.315854 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 4, -4 ), Vector2( 8, -6 ), Vector2( 18, -12 ), Vector2( 19, -10 ), Vector2( 20, -7 ), Vector2( 19, -2 ), Vector2( 19, 2 ), Vector2( 10, 12 ), Vector2( 8, 10 ) ]
@@ -73,7 +73,6 @@ tracks/2/keys = {
 script = ExtResource( 1 )
 FRICTION = 0.2
 ACCELERATION = 0.15
-DASH_ENABLED = false
 
 [node name="AnimationPlayer" parent="." index="1"]
 anims/idle = SubResource( 1 )
@@ -94,8 +93,8 @@ script = ExtResource( 6 )
 [node name="HitBox" type="Area2D" parent="Sword" index="0"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sword/HitBox" index="0"]
-position = Vector2( 4, -4 )
-rotation = 0.0102564
+position = Vector2( 12.2535, 9.49612 )
+rotation = 4.04388
 scale = Vector2( 1.02083, 0.9375 )
 polygon = PoolVector2Array( 9.79592, 6.4, 2.75234, -6.49754, 3.63895, -9.72953, 10.6777, -3.5677, 13.8308, 3.79456 )
 
@@ -104,7 +103,7 @@ position = Vector2( 14, -1 )
 scale = Vector2( 1.66667, 1.25 )
 texture = ExtResource( 5 )
 hframes = 10
-frame = 1
+frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sword" index="2"]
 anims/attack = SubResource( 3 )

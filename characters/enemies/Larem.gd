@@ -1,6 +1,5 @@
 extends Character
 
-export var GRAVITY = 300
 export var SPEED = 30
 
 var direction = -1.0
@@ -16,4 +15,3 @@ func _physics_process(_delta: float) -> void:
 	
 	_velocity.y = GRAVITY * get_physics_process_delta_time()
 	_velocity.x = lerp(_velocity.x, SPEED * direction, 0.05) 
-	_velocity = move_and_slide(_velocity, UP)
